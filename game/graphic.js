@@ -28,6 +28,11 @@ function init()
     player1 = new Player("player1", 0xffff00, new THREE.Vector2(50, 0), 0);
     scene.add(player1.graphic);
 
+    // random ennemy position
+    var x = Math.floor(Math.random() * WIDTH) - WIDTH / 2;
+    var y = Math.floor(Math.random() * HEIGHT) - HEIGHT / 2;
+    player2 = new Player("player2", 0xffff00, new THREE.Vector2(x, y), 0);
+    scene.add(player2.graphic);
     light1 = new Light("sun", 0xffffff, "0,0,340");
     scene.add(light1);
 }
@@ -47,13 +52,13 @@ function Ground(color, size_x, size_y, nb_tile)
     for (x = minX; x <= maxX; x = x+sizeOfTileX){
         for (y = minY; y <= maxY; y = y+sizeOfTileY){
 
-            color = colors[Math.floor(Math.random()*colors.length)];
+            color = (x == sizeOfTileX && y == 0) ? colors[0] : colors[Math.floor(Math.random()*colors.length)];
        
             if (0x000000 != color)
             {
                 tmpGround = new THREE.Mesh(
                 new THREE.PlaneGeometry(sizeOfTileX-10, sizeOfTileY-10),
-                new THREE.MeshLambertMaterial({color: color, transparent: true, opacity: 0.6}));
+                new THREE.MeshLambertMaterial({color, transparent: true, opacity: 0.6}));
                 tmpGround.position.x = x;
                 tmpGround.position.y = y;
                 scene.add(tmpGround);
