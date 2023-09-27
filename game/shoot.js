@@ -50,6 +50,26 @@ function bullet_collision()
             scene.remove(player1.bullets[i]);
             player1.bullets.splice(i, 1);
             i--;
+            continue;
+        }
+
+        if (Math.abs(player1.bullets[i].position.x - player2.graphic.position.x) < 10 &&
+            Math.abs(player1.bullets[i].position.y - player2.graphic.position.y) < 10)
+        {
+            scene.remove(player1.bullets[i]);
+            player1.bullets.splice(i, 1);
+            i--;
+            player2.dead();
+            continue;
+        }
+        
+        if (Math.abs(player2.graphic.position.x - player1.graphic.position.x) < 10 &&
+            Math.abs(player2.graphic.position.y - player1.graphic.position.y) < 10)
+        {
+            scene.remove(player2.bullets[i]);
+            player2.bullets.splice(i, 1);
+            i--;
+            player1.life--;
         }
     }
 
@@ -71,6 +91,8 @@ function player_collision()
         player1.graphic.position.x -= x;
 }
 
+// falling timeout
+var fallingTime = 0;
 function player_falling()
 {
     var nb_tile = 10;
@@ -95,7 +117,11 @@ function player_falling()
             && (y > tileY) 
             && (y < mtileY))
         {
-           player1.dead();
+            if (fallingTime + 1 < clock.getElapsedTime())
+            {
+                player1.life--;
+                fallingTime = clock.getElapsedTime();
+            }
         }
     }
 
