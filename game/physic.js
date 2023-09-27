@@ -14,14 +14,13 @@ function update()
         player1.decelerate(moveDistance);
 
     player1.move();
-    setInterval(function(){
-        if (player2.position.x > WIDTH / 2) {
-            player2.direction = -Math.PI;
-        } else if (player2.position.x < -WIDTH / 2) {
-            player2.direction = 0;
-        }
-        player2.accelerate(moveDistance);
-    });
+    if (player2.position.x > WIDTH / 2) {
+        player2.direction = -Math.PI;
+    } else if (player2.position.x < -WIDTH / 2) {
+        player2.direction = 0;
+    }
+
+    player2.accelerate(moveDistance);
 
     // automatic move
     player2.move();

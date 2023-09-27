@@ -31,7 +31,7 @@ function init()
     // random ennemy position
     var x = Math.floor(Math.random() * WIDTH) - WIDTH / 2;
     var y = Math.floor(Math.random() * HEIGHT) - HEIGHT / 2;
-    player2 = new Player("player2", 0xffff00, new THREE.Vector2(x, y), 0, true);
+    player2 = new Player("player2", 0xff0000, new THREE.Vector2(x, y), 0, true);
     scene.add(player2.graphic);
     light1 = new Light("sun", 0xffffff, "0,0,340");
     scene.add(light1);

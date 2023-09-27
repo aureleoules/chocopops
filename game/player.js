@@ -21,6 +21,19 @@ var Player = function(name, color, position, direction, bot = false) {
     this.graphic.rotateOnAxis(new THREE.Vector3(0,0,1), this.direction+(3*Math.PI/2));
 };
 
+Player.prototype.shoot = function () {
+    bullet = new THREE.Mesh(
+                new THREE.SphereGeometry(2),
+                bullet_player1_material);
+            scene.add(bullet);
+            bullet.position.x = this.graphic.position.x + 7.5 * Math.cos(this.direction);
+            bullet.position.y = this.graphic.position.y + 7.5 * Math.sin(this.direction);
+            bullet.angle = this.direction;
+            this.bullets.push(bullet);
+            bulletTime1 = clock.getElapsedTime();
+
+};
+
 Player.prototype.dead = function () {
     this.graphic.position.z = this.graphic.position.z-0.1;
     //Nettoyage de la div container
