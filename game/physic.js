@@ -6,7 +6,7 @@ function update()
 
     if (keyboard.pressed("left"))
         player1.turnLeft(rotateAngle);
-    if (keyboard.pressed("d"))
+    if (keyboard.pressed("right"))
         player1.turnRight(-rotateAngle);
     if (keyboard.pressed("up"))
         player1.accelerate(moveDistance);

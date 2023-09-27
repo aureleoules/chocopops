@@ -16,7 +16,7 @@ function shoot()
         bulletTime1 = clock.getElapsedTime();
     }
 
-    if (bulletTime2 + 1000 < clock.getElapsedTime()) {
+    if (bulletTime2 + 1 < clock.getElapsedTime()) {
         const oldDirection = player2.direction;
         player2.direction = Math.random() * 2 * Math.PI;
         player2.shoot();
@@ -145,5 +145,4 @@ function player_falling()
             }
         }
     }
-
 }
